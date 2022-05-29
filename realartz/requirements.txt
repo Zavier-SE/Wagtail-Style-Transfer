@@ -1,0 +1,10 @@
+Django>=3.2,<3.3
+wagtail>=2.15,<2.16
+fastai==1.0.51
+wandb
+tensorboardX==1.6
+ffmpeg-python
+youtube-dl>=2019.4.17
+jupyterlab
+opencv-python>=3.3.0.10
+pillow>=8.0.0
