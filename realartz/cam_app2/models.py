@@ -455,10 +455,12 @@ class ImagePage(Page):
             file_upload = glob.glob(str(Path(f'{settings.MEDIA_ROOT}/uploadedPics/image/*.jpg')), recursive=True)
             files = []
             files.extend(file_upload)
+            print(f'Content file: {file_upload}')
 
             style_upload = glob.glob(str(Path(f'{settings.MEDIA_ROOT}/uploadedPics/style/*.jpg')), recursive=True)
             styles = []
             styles.extend(style_upload)
+            print(f'Style file: {style_upload}')
 
             ## Style transfer
             before_file = files[0]
@@ -480,8 +482,10 @@ class ImagePage(Page):
             # print(context["my_result_file_names"])
 
             ## Display uploaded content and style images
-            context["my_uploaded_file_names"] = files
-            context["my_uploaded_style_img"]= styles
+            f_up = os.listdir(str(Path(f'{settings.MEDIA_ROOT}/uploadedPics/image/')))
+            context["my_uploaded_file_names"].append('/media/uploadedPics/image/' + f_up[0])
+            s_up = os.listdir(str(Path(f'{settings.MEDIA_ROOT}/uploadedPics/style/')))
+            context["my_uploaded_style_img"].append('/media/uploadedPics/style/'+s_up[0])
 
             return render(request, "StyleTransfer\StyleTransfer.html", context)
             ## END - Style transfer
@@ -517,6 +521,11 @@ class ImagePage(Page):
             cv2.imwrite('media/Result/colorized-local.jpg', after_image_cv2)
             context["my_result_file_names"].append('\media\Result\colorized-local.jpg')
             print(context["my_result_file_names"])
+
+            ## Display uploaded content and style images
+            f_up = os.listdir(str(Path(f'{settings.MEDIA_ROOT}/uploadedPics/image/')))
+            context["my_uploaded_file_names"].append('/media/uploadedPics/image/' + f_up[0])
+
             # return render(request, "cam_app2\image.html", context)
             return render(request, "StyleTransfer\StyleTransfer.html", context)
             # return context

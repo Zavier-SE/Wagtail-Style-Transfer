@@ -162,6 +162,7 @@
 </div>
 </center>
 
+{% if my_uploaded_file_names|length > 0 %}
 <div class=" " style="margin-bottom:50px;">
   <div class="carousel-inner">
     <table style="table-layout: fixed;">
@@ -237,6 +238,7 @@
   {% endfor %}
 </div>
 </div>
+{% endif %}
 {% endif %}
 
 
